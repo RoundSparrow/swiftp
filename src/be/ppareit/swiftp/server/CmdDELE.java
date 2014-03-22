@@ -36,6 +36,12 @@ public class CmdDELE extends FtpCmd implements Runnable {
 
     @Override
     public void run() {
+        if (com.cameracornet.outsidegpl.swiftp.InterfaceAdditions.getFTPCommandDeleteDisabled())
+        {
+            Log.e(TAG, "CameraCornet modified swiftp, DELE command return");
+            return;
+        }
+
         Log.d(TAG, "DELE executing");
         String param = getParameter(input);
         File storeFile = inputPathToChrootedFile(sessionThread.getWorkingDir(), param);

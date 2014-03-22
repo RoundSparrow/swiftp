@@ -35,6 +35,12 @@ public class CmdMKD extends FtpCmd implements Runnable {
 
     @Override
     public void run() {
+        if (com.cameracornet.outsidegpl.swiftp.InterfaceAdditions.getFTPCommandMkdirDisabled())
+        {
+            Log.e(TAG, "CameraCornet modified swiftp, MKD command return");
+            return;
+        }
+
         Log.d(TAG, "MKD executing");
         String param = getParameter(input);
         File toCreate;

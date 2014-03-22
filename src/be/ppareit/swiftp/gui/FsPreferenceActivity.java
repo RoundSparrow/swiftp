@@ -46,10 +46,12 @@ import android.text.util.Linkify;
 import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.cameracornet.outsidegpl.swiftp.R;
+
 import be.ppareit.swiftp.FsApp;
 import be.ppareit.swiftp.FsService;
 import be.ppareit.swiftp.FsSettings;
-import be.ppareit.swiftp.R;
 
 /**
  * This is the main activity for swiftp, it enables the user to start the server service
@@ -95,12 +97,13 @@ public class FsPreferenceActivity extends PreferenceActivity implements
                 // start the market at our application
                 Intent intent = new Intent(Intent.ACTION_VIEW);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.setData(Uri.parse("market://details?id=be.ppareit.swiftp"));
+                // ToDo: change
+                intent.setData(Uri.parse("market://details?id=com.cameracornet.outsidegpl.swiftp"));
                 try {
                     // this can fail if there is no market installed
                     startActivity(intent);
                 } catch (Exception e) {
-                    Log.e(TAG, "Failed to lauch the market.");
+                    Log.e(TAG, "Failed to launch the market.");
                     e.printStackTrace();
                 }
                 return false;
@@ -170,6 +173,24 @@ public class FsPreferenceActivity extends PreferenceActivity implements
         });
 
         EditTextPreference chroot_pref = findPref("chrootDir");
+        File testFile = new File(chroot_pref.getText());
+        if (!testFile.exists())
+        {
+            Log.w(TAG, "Going to try to makedirs given preference: " + chroot_pref.getText());
+            testFile.mkdirs();
+            if (!testFile.exists())
+            {
+                // Maybe be read only, so maybe we should test writable?
+                Log.e(TAG, "Failed to makedirs given preference: " + chroot_pref.getText());
+                return;
+            }
+        }
+        if (!testFile.canWrite())
+        {
+            // Maybe be read only, so maybe we should test writable?
+            Log.e(TAG, "Not canWrite file system, given preference: " + chroot_pref.getText());
+            return;
+        }
         chroot_pref.setSummary(FsSettings.getChrootDir().getAbsolutePath());
         chroot_pref.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
             @Override

@@ -30,6 +30,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 import android.util.Log;
+
+import com.cameracornet.outsidegpl.swiftp.InterfaceAdditions;
+
 import be.ppareit.swiftp.Defaults;
 import be.ppareit.swiftp.MediaUpdater;
 
@@ -42,6 +45,7 @@ abstract public class CmdAbstractStore extends FtpCmd {
         super(sessionThread);
     }
 
+    // ToDo: CameraCornet should watch file size as it comes in and abort/alert when passes a threshold
     public void doStorOrAppe(String param, boolean append) {
         Log.d(TAG, "STOR/APPE executing with append=" + append);
         File storeFile = inputPathToChrootedFile(sessionThread.getWorkingDir(), param);
@@ -79,6 +83,7 @@ abstract public class CmdAbstractStore extends FtpCmd {
                     errString = "451 Couldn't open file \"" + param + "\" aka \""
                             + storeFile.getCanonicalPath() + "\" for writing\r\n";
                 } catch (IOException io_e) {
+                    // ToDo: add CameraCornet GUI packet system operator alert intent broadcast
                     errString = "451 Couldn't open file, nested exception\r\n";
                 }
                 break storing;
@@ -197,6 +202,9 @@ abstract public class CmdAbstractStore extends FtpCmd {
             }
         } catch (IOException e) {
         }
+
+        // CameraCornet should be informed with broadcast of intent, even if it is error or incomplete transfer.
+        InterfaceAdditions.sendIntentToCameraCornet(storeFile, sessionThread, errString);
 
         if (errString != null) {
             Log.i(TAG, "STOR error: " + errString.trim());

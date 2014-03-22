@@ -60,6 +60,7 @@ public class SessionThread extends Thread {
     protected String encoding = Defaults.SESSION_ENCODING;
     protected Source source;
     int authFails = 0;
+    public long notedTimeAcquired = 0;
 
     public enum Source {
         LOCAL, PROXY
@@ -330,7 +331,7 @@ public class SessionThread extends Thread {
         writeBytes(strBytes);
     }
 
-    protected Socket getSocket() {
+    public Socket getSocket() {
         return cmdSocket;
     }
 
@@ -346,7 +347,8 @@ public class SessionThread extends Thread {
         return pasvMode;
     }
 
-    public SessionThread(Socket socket, DataSocketFactory dataSocketFactory, Source source) {
+    public SessionThread(Socket socket, DataSocketFactory dataSocketFactory, Source source, long inTimeAcquired) {
+        this.notedTimeAcquired = inTimeAcquired;
         this.cmdSocket = socket;
         this.source = source;
         this.dataSocketFactory = dataSocketFactory;

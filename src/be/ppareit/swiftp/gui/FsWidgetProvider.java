@@ -28,8 +28,10 @@ import android.content.Intent;
 import android.os.IBinder;
 import android.util.Log;
 import android.widget.RemoteViews;
+
+import com.cameracornet.outsidegpl.swiftp.R;
+
 import be.ppareit.swiftp.FsService;
-import be.ppareit.swiftp.R;
 
 /**
  * Simple widget for FTP Server.
@@ -57,7 +59,8 @@ public class FsWidgetProvider extends AppWidgetProvider {
     public void onUpdate(Context context, AppWidgetManager appWidgetManager,
             int[] appWidgetIds) {
         Log.d(TAG, "updated called");
-        // let the updating happen by a service
+        // let the updating happen by a serviceimport be.ppareit.swiftp.R;
+
         Intent intent = new Intent(context, UpdateService.class);
         context.startService(intent);
     }

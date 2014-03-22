@@ -30,7 +30,7 @@ public class Defaults {
 	protected static int serverLogScrollBack = 10;
 	protected static int uiLogLevel = Defaults.release ? Log.INFO : Log.DEBUG;
 	protected static int consoleLogLevel = Defaults.release ? Log.INFO : Log.DEBUG;
-	protected static String settingsName = "SwiFTP";
+	protected static String settingsName = "SwiFTPCamCornet";
 	public static final int tcpConnectionBacklog = 5;
 	public static final String chrootDir = "/";
 	public static final int REMOTE_PROXY_PORT = 2222;

@@ -28,9 +28,12 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
+
+import com.cameracornet.outsidegpl.swiftp.R;
+
 import be.ppareit.swiftp.FsService;
 import be.ppareit.swiftp.FsSettings;
-import be.ppareit.swiftp.R;
+
 
 public class FsNotification extends BroadcastReceiver {
     private static final String TAG = FsNotification.class.getSimpleName();

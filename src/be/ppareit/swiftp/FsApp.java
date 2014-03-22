@@ -41,8 +41,15 @@ public class FsApp extends Application {
      * @return the Context of this application
      */
     public static Context getAppContext() {
-        if (sContext == null)
+        if (sContext == null) {
             Log.e(TAG, "Global context not set");
+            try {
+                Thread.sleep(800);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.exit(4);
+        }
         return sContext;
     }
 
@@ -50,11 +57,7 @@ public class FsApp extends Application {
      * @return true if this is the free version
      */
     public static boolean isFreeVersion() {
-        try {
-            Context context = getAppContext();
-            return context.getPackageName().contains("free");
-        } catch (Exception swallow) {
-        }
+        // CameraCornet should always behave as paid version
         return false;
     }
 
@@ -75,4 +78,7 @@ public class FsApp extends Application {
         }
     }
 
+    public static void setContext(Context applicationContext) {
+        sContext = applicationContext;
+    }
 }
