@@ -1,4 +1,4 @@
-SwiFTP cameraCornet fork
+SwiFTP CameraCornet fork
 ============================
 
 Software licensed: GNU General Public License (GPL) version 3.
