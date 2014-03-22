@@ -10,7 +10,10 @@ import be.ppareit.swiftp.server.CmdAbstractStore;
 import be.ppareit.swiftp.server.SessionThread;
 
 /**
- * Created by adminsag on 3/22/14.
+ * Copyright 2013-2014 Stephen A. Gutknecht.
+ * This class file, InterfaceAdditions.java is dual licensed.
+ *    1) GPL licensed for compliance with the direct including in binary builds of application GPL SwiFTP
+ *    2) commercial licensed for use by Stephen A. Gutknecht, CameraCornet.com, and other agreed parties as determined by author.
  */
 public class InterfaceAdditions {
     public static boolean getFTPCommandDeleteDisabled()
@@ -21,7 +24,7 @@ public class InterfaceAdditions {
 
     public static void sendIntentToCameraCornet(File storeFile, SessionThread sessionThread, String errString)
     {
-        // ZebraCamera should be informed with broadcast of intent, even if it is error
+        // CameraCornet should be informed with broadcast of intent, even if it is error
 
         try
         {
