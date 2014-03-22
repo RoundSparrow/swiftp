@@ -2,10 +2,13 @@ package com.cameracornet.outsidegpl.swiftp;
 
 import android.content.Intent;
 import android.util.Log;
+import android.view.Gravity;
+import android.widget.Toast;
 
 import java.io.File;
 
 import be.ppareit.swiftp.FsApp;
+import be.ppareit.swiftp.FsService;
 import be.ppareit.swiftp.server.CmdAbstractStore;
 import be.ppareit.swiftp.server.SessionThread;
 
@@ -18,6 +21,28 @@ import be.ppareit.swiftp.server.SessionThread;
 public class InterfaceAdditions {
     public static boolean getFTPCommandDeleteDisabled()
     {
+        return true;
+    }
+    public static boolean getFTPCommandMkdirDisabled() {
+        // ToDo: make GUI preferences for this
+        return false;
+    }
+
+    /*
+    This method is called on the START of a FTP upload. Upload may take time, so nice to have early indicator.
+    ToDo: add user preference if this toast is displayed.
+    ToDo: could send Intent to generate GUI activity of motion detection
+     */
+    public static boolean notifyIncomingFTPFileStart() {
+        FsService.mySelf.toastHandler.post(new Runnable() {
+            public void run() {
+                Toast toast = Toast.makeText(FsService.mySelf,
+                        R.string.file_incoming_toast, Toast.LENGTH_LONG);
+                toast.setGravity(Gravity.CENTER, 0, 0);
+                toast.show();
+            }
+        });
+
         return true;
     }
 
@@ -43,7 +68,7 @@ public class InterfaceAdditions {
             // ToDo: ideal that we checksum hash the file as soon as received to track that it is not corrupted on SDCard or otherwise. perhaps even as it is incoming we start hashing it to prevent duplicate I/O.
             intent1.putExtra("fileHash0", "");
             // Try to keep a time reference as close to session start time as possible.
-            intent1.putExtra("timeSessionAcquired", sessionThread.notedTimeAcquired);
+            intent1.putExtra("timeSessionAcquired", sessionThread.getNotedTimeAcquired());
             if (errString == null)
             {
                 intent1.putExtra("ready", true);
@@ -60,9 +85,5 @@ public class InterfaceAdditions {
         {
             Log.e("SwiFTP_CamCornet", "Exception. Failure to send com.cameracornet.FTP_INCOMING broadcast intent");
         }
-    }
-
-    public static boolean getFTPCommandMkdirDisabled() {
-        return true;
     }
 }

@@ -28,6 +28,8 @@ import java.net.ServerSocket;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
+import java.util.logging.Handler;
+import java.util.logging.LogRecord;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
@@ -58,6 +60,9 @@ public class FsService extends Service implements Runnable {
     static public final String ACTION_STOP_FTPSERVER = "be.ppareit.swiftp.ACTION_STOP_FTPSERVER";
 
     protected static Thread serverThread = null;
+    // ToDo: is there really a class here named "handler" also?!
+    public android.os.Handler toastHandler = new android.os.Handler();
+    public static FsService mySelf = null;
     protected boolean shouldExit = false;
 
     protected ServerSocket listenSocket;
@@ -76,6 +81,7 @@ public class FsService extends Service implements Runnable {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        mySelf = this;
         shouldExit = false;
         int attempts = 10;
         // The previous server thread may still be cleaning up, wait for it to finish.

@@ -41,7 +41,7 @@ public class TcpListener extends Thread {
             listenSocket.close(); // if the TcpListener thread is blocked on accept,
                                   // closing the socket will raise an exception
         } catch (Exception e) {
-            Log.d(TAG, "Exception closing TcpListener listenSocket");
+            Log.e(TAG, "Exception closing TcpListener listenSocket ", e);
         }
     }
 
@@ -59,7 +59,7 @@ public class TcpListener extends Thread {
                 ftpServerService.registerSessionThread(newSession);
             }
         } catch (Exception e) {
-            Log.d(TAG, "Exception in TcpListener");
+            Log.e(TAG, "Exception in TcpListener", e);
         }
     }
 }

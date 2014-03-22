@@ -35,7 +35,7 @@ public class RequestStartStopReceiver extends BroadcastReceiver {
      * Will check if the device contains external storage (sdcard) and display a warning
      * for the user if there is no external storage. Nothing more.
      */
-    private void warnIfNoExternalStorage() {
+    public static void warnIfNoExternalStorage() {
         String storageState = Environment.getExternalStorageState();
         if (!storageState.equals(Environment.MEDIA_MOUNTED)) {
             Log.v(TAG, "Warning due to storage state " + storageState);

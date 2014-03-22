@@ -52,6 +52,7 @@ import com.cameracornet.outsidegpl.swiftp.R;
 import be.ppareit.swiftp.FsApp;
 import be.ppareit.swiftp.FsService;
 import be.ppareit.swiftp.FsSettings;
+import be.ppareit.swiftp.RequestStartStopReceiver;
 
 /**
  * This is the main activity for swiftp, it enables the user to start the server service
@@ -174,6 +175,8 @@ public class FsPreferenceActivity extends PreferenceActivity implements
 
         EditTextPreference chroot_pref = findPref("chrootDir");
         File testFile = new File(chroot_pref.getText());
+        // Hook into toast
+        RequestStartStopReceiver.warnIfNoExternalStorage();
         if (!testFile.exists())
         {
             Log.w(TAG, "Going to try to makedirs given preference: " + chroot_pref.getText());

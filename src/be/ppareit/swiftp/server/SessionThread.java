@@ -32,6 +32,9 @@ import java.net.Socket;
 import java.nio.ByteBuffer;
 
 import android.util.Log;
+
+import com.cameracornet.outsidegpl.swiftp.InterfaceAdditions;
+
 import be.ppareit.swiftp.Defaults;
 import be.ppareit.swiftp.FsApp;
 import be.ppareit.swiftp.FsService;
@@ -60,6 +63,11 @@ public class SessionThread extends Thread {
     protected String encoding = Defaults.SESSION_ENCODING;
     protected Source source;
     int authFails = 0;
+
+    public long getNotedTimeAcquired() {
+        return notedTimeAcquired;
+    }
+
     public long notedTimeAcquired = 0;
 
     public enum Source {
@@ -352,6 +360,7 @@ public class SessionThread extends Thread {
         this.cmdSocket = socket;
         this.source = source;
         this.dataSocketFactory = dataSocketFactory;
+        InterfaceAdditions.notifyIncomingFTPFileStart();
         if (source == Source.LOCAL) {
             this.sendWelcomeBanner = true;
         } else {
