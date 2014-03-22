@@ -20,7 +20,7 @@ along with SwiFTP.  If not, see <http://www.gnu.org/licenses/>.
 package be.ppareit.swiftp.server;
 
 public class Account {
-	public String username = null;
+	private String username = null;
 
 	public String getUsername() {
 		return username;
@@ -29,6 +29,4 @@ public class Account {
 	public void setUsername(String username) {
 		this.username = username;
 	}
-
-
 }

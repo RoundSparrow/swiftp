@@ -30,13 +30,15 @@ public class InterfaceAdditions {
             intent1.setAction("com.cameracornet.FTP_INCOMING");
 
             intent1.putExtra("filePath", storeFile.getPath());
-            intent1.putExtra("FTPusername", sessionThread.getAccount().username);
+            intent1.putExtra("FTPusername", sessionThread.getAccount().getUsername());
             intent1.putExtra("senderInetAddress", sessionThread.getSocket().getInetAddress());
             String netIPaddressAsString = sessionThread.getSocket().getInetAddress().getHostAddress();
             intent1.putExtra("senderIPAddress", netIPaddressAsString);
             String networkMACaddress = OutsideCodeAdditions.getMacFromArpCache(netIPaddressAsString);
             intent1.putExtra("senderNetworkMAC", networkMACaddress);
-            intent1.putExtra("fileSize", (long) 0);
+            intent1.putExtra("fileSize", storeFile.length());
+            // ToDo: ideal that we checksum hash the file as soon as received to track that it is not corrupted on SDCard or otherwise. perhaps even as it is incoming we start hashing it to prevent duplicate I/O.
+            intent1.putExtra("fileHash0", "");
             // Try to keep a time reference as close to session start time as possible.
             intent1.putExtra("timeSessionAcquired", sessionThread.notedTimeAcquired);
             if (errString == null)

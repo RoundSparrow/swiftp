@@ -59,7 +59,7 @@ public class FsWidgetProvider extends AppWidgetProvider {
     public void onUpdate(Context context, AppWidgetManager appWidgetManager,
             int[] appWidgetIds) {
         Log.d(TAG, "updated called");
-        // let the updating happen by a serviceimport be.ppareit.swiftp.R;
+        // let the updating happen by a service
 
         Intent intent = new Intent(context, UpdateService.class);
         context.startService(intent);
