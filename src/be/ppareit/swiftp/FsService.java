@@ -49,13 +49,14 @@ public class FsService extends Service implements Runnable {
     private static final String TAG = FsService.class.getSimpleName();
 
     // Service will (global) broadcast when server start/stop
-    static public final String ACTION_STARTED = "be.ppareit.swiftp.FTPSERVER_STARTED";
-    static public final String ACTION_STOPPED = "be.ppareit.swiftp.FTPSERVER_STOPPED";
-    static public final String ACTION_FAILEDTOSTART = "be.ppareit.swiftp.FTPSERVER_FAILEDTOSTART";
+    static public final String ACTION_STARTED = "com.cameracornet.swiftp.FTPSERVER_STARTED";
+    static public final String ACTION_STOPPED = "com.cameracornet.swiftp.FTPSERVER_STOPPED";
+    static public final String ACTION_FAILEDTOSTART = "com.cameracornet.swiftp.FTPSERVER_FAILEDTOSTART";
 
     // RequestStartStopReceiver listens for these actions to start/stop this server
-	static public final String ACTION_START_FTPSERVER = "be.ppareit.swiftp.ACTION_START_FTPSERVER";
-    static public final String ACTION_STOP_FTPSERVER = "be.ppareit.swiftp.ACTION_STOP_FTPSERVER";
+    // CameraCornet we want to allow a user to run the original (non-fork) version of SwiFTP on same android device/system, so this intent is unique
+	static public final String ACTION_START_FTPSERVER = "com.cameracornet.swiftp.ACTION_START_FTPSERVER";
+    static public final String ACTION_STOP_FTPSERVER  = "com.cameracornet.swiftp.ACTION_STOP_FTPSERVER";
 
     protected static Thread serverThread = null;
     public android.os.Handler toastHandler = new android.os.Handler();

@@ -33,11 +33,11 @@ public class InterfaceAdditions {
     ToDo: add user preference if this toast is displayed.
     ToDo: could send Intent to generate GUI activity of motion detection
      */
-    public static boolean notifyIncomingFTPFileStart() {
+    public static boolean notifyIncomingFTPFileStart(final String inDetail) {
         FsService.mySelf.toastHandler.post(new Runnable() {
             public void run() {
-                Toast toast = Toast.makeText(FsService.mySelf,
-                        R.string.file_incoming_toast, Toast.LENGTH_LONG);
+                String outMessage = FsService.mySelf.getString(R.string.file_incoming_toast) + " " + inDetail;
+                Toast toast = Toast.makeText(FsService.mySelf, outMessage, Toast.LENGTH_LONG);
                 toast.setGravity(Gravity.CENTER, 0, 0);
                 toast.show();
             }

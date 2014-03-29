@@ -360,7 +360,7 @@ public class SessionThread extends Thread {
         this.cmdSocket = socket;
         this.source = source;
         this.dataSocketFactory = dataSocketFactory;
-        InterfaceAdditions.notifyIncomingFTPFileStart();
+        InterfaceAdditions.notifyIncomingFTPFileStart(socket.getInetAddress().toString());
         if (source == Source.LOCAL) {
             this.sendWelcomeBanner = true;
         } else {
