@@ -6,9 +6,11 @@ import android.view.Gravity;
 import android.widget.Toast;
 
 import java.io.File;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import be.ppareit.swiftp.FsApp;
 import be.ppareit.swiftp.FsService;
+import be.ppareit.swiftp.FsSettings;
 import be.ppareit.swiftp.server.CmdAbstractStore;
 import be.ppareit.swiftp.server.SessionThread;
 
@@ -28,20 +30,23 @@ public class InterfaceAdditions {
         return false;
     }
 
+    public static AtomicInteger incomingFileStartCount = new AtomicInteger();
     /*
     This method is called on the START of a FTP upload. Upload may take time, so nice to have early indicator.
-    ToDo: add user preference if this toast is displayed.
-    ToDo: could send Intent to generate GUI activity of motion detection
+    ToDo: could send Intent to generate packet client GUI activity of motion detection
      */
     public static boolean notifyIncomingFTPFileStart(final String inDetail) {
-        FsService.mySelf.toastHandler.post(new Runnable() {
-            public void run() {
-                String outMessage = FsService.mySelf.getString(R.string.file_incoming_toast) + " " + inDetail;
-                Toast toast = Toast.makeText(FsService.mySelf, outMessage, Toast.LENGTH_LONG);
-                toast.setGravity(Gravity.CENTER, 0, 0);
-                toast.show();
-            }
-        });
+        final int outputIndex = incomingFileStartCount.incrementAndGet();
+        if (FsSettings.shouldIncomingToast()) {
+            FsService.mySelf.toastHandler.post(new Runnable() {
+                public void run() {
+                    String outMessage = FsService.mySelf.getString(R.string.file_incoming_toast) + " #" + outputIndex + " @" + inDetail;
+                    Toast toast = Toast.makeText(FsService.mySelf, outMessage, Toast.LENGTH_LONG);
+                    toast.setGravity(Gravity.CENTER, 0, 0);
+                    toast.show();
+                }
+            });
+        }
 
         return true;
     }

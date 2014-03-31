@@ -19,11 +19,13 @@ along with SwiFTP.  If not, see <http://www.gnu.org/licenses/>.
 -->
 <resources>
     <!-- Don't translate the default resources -->
-    <string name="chroot_default"></string>
-    <string name="username_default">ftp</string>
-    <string name="password_default">ftp</string>
-    <string name="show_password_default">false</string>
-    <string name="portnumber_default">2121</string>
+    <!-- ToDo: // CameraCornet QuickSetup app interface via ContentProvider with signature level access, get file path -->
+    <string name="chroot_default">/sdcard/CameraCornet/camincoming/ftp0</string>
+    <string name="username_default">camcornet</string>
+    <string name="password_default">changeme</string>
+    <string name="show_password_default">true</string>
+    <string name="portnumber_default">7121</string>
     <string name="acceptwifi_default">true</string>
     <string name="wakelock_default">true</string>
+    <string name="incomingToast_default">true</string>
 </resources>

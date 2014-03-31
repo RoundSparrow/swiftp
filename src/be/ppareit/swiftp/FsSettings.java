@@ -74,6 +74,11 @@ public class FsSettings {
         return sp.getBoolean("stayAwake", false);
     }
 
+    public static boolean shouldIncomingToast() {
+        final SharedPreferences sp = getSharedPreferences();
+        return sp.getBoolean("incomingToast", false);
+    }
+
     /**
      * @return the SharedPreferences for this application
      */

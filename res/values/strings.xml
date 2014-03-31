@@ -21,14 +21,14 @@ along with SwiFTP.  If not, see <http://www.gnu.org/licenses/>.
 
 <resources>
 
-    <string name="swiftp_name">FTP Server</string>
+    <string name="swiftp_name">SwiFTP CameraCornet</string>
     <string name="running_label">FTP Server</string>
-    <string name="running_summary_stopped">Toggle the state of the ftp server</string>
+    <string name="running_summary_stopped">Toggle the state of the FTP server</string>
     <string name="running_summary_started">running at %s</string>
     <string name="running_summary_failed">Failed to start the FTP server, not connected to the local network (wifi or ethernet)?</string>
     <string name="market_version_label">Market version</string>
     <string name="market_version_summary">
-        This is the FTP Server Demo version.
+        THIS SHOULD NOT SHOW on CameraCornet build - This is the FTP Server Demo version.
         Support development by getting the FTP Server from the android market.
         Click here to go to the market.</string>
     <string name="settings_label">Settings</string>
@@ -38,7 +38,7 @@ along with SwiFTP.  If not, see <http://www.gnu.org/licenses/>.
     <string name="advancedsettings_label">Advanced Settings...</string>
     <string name="portnumber_label">Port Number</string>
     <string name="chroot_label">Stay in folder</string>
-    <string name="acceptwifi_label">Accept connection from wifi</string>
+    <string name="acceptwifi_label">Accept connection from WiFi</string>
     <string name="wakelock_label">Keep device awake (full CPU speed)</string>
     <string name="extra_label">Extra</string>
     <string name="help_label">Help...</string>
@@ -61,26 +61,21 @@ file transfers go slow or stop completely when the phone sleeps. If you have thi
 problem, check this box and restart the program. Your phone will stay awake as long as
 the server is running.\n\n
 \
-For power and security reasons, it is recommended that the server be stopped after use.\n\n\
-\
-If something is not working the way you expect it to, please report it to Pieter Pareit
-(pieter.pareit@gmail.com).\n\n\
-\
-The development of this open source program is supported by buying this program through
-the google play store. You can follow the development at https://github.com/ppareit/swiftp .
-To have an idea on the features that will be implemented, see the issue tracker at
-https://github.com/ppareit/swiftp/issues .\n\n
+If something is not working the way you expect it to, please report it to CameraCornet
+(help@cameracornet.com). We also suggest comparison of the original code branch of SwiFTP\n\n\
     </string>
     <string name="about_dlg_title">FTP Server About</string>
     <string name="about_dlg_message">
         <b>Description: </b>
-        FTP Server (SwiFTP) allows you to run an ftp server on your android device.\n\n\
+        FTP Server (SwiFTP) allows you to run an FTP server on your Android device.\n\n\
+        \n
+        This version is modified for CameraCornet integration. We encourage donations to the original SwiFTP software authors,
+          namely Pieter Pareit who maintains the application!
+        \n
         <b>Website:</b>
-        http://ppareit.github.com/swiftp/\n\n
-        <b>Current maintainer:</b>
-        Pieter Pareit (pieter.pareit@gmail.com)\n\n
+        https://github.com/roundsparrow/swiftp/\n\n
         <b>Programming: </b>\
-        Dave Revell (dave.revell@gmail.com), Pieter Pareit (pieter.pareit@gmail.com)\n\n\
+        Dave Revell (dave.revell@gmail.com), Pieter Pareit (pieter.pareit@gmail.com), Stephen A. Gutknecht\n\n\
         <b>Artwork:</b>
         Birgit Niemegeers\n\n
         <b>License: </b>
@@ -107,5 +102,8 @@ https://github.com/ppareit/swiftp/issues .\n\n
     <string name="pst_disconnected">disconnected</string>
     <string name="storage_warning">Warning: storage is not available. You may want to unmount it.</string>
     <string name="widget_name">FTP Server Widget</string>
+    <string name="app_name">SwiFTP CameraCornet</string>
+    <string name="file_incoming_toast">FTP file from camera incoming</string>
+    <string name="incomingToast_label">Show on-screen toast for each incoming file</string>
 
 </resources>
