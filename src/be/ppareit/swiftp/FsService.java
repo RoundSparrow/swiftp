@@ -20,6 +20,7 @@ along with SwiFTP.  If not, see <http://www.gnu.org/licenses/>.
 
 package be.ppareit.swiftp;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
@@ -93,6 +94,15 @@ public class FsService extends Service implements Runnable {
                 return START_STICKY;
             }
         }
+
+        // It's possible that user deleted our directory between time of picking/setup and this start. Could have been weeks since start.
+        File currentDir = FsSettings.getChrootDir();
+        if (currentDir.exists())
+        {
+            Log.w(TAG, "trying to heal missing directory, creating: " + currentDir.toString());
+            currentDir.mkdirs();
+        }
+
         Log.d(TAG, "Creating server thread");
         serverThread = new Thread(this);
         serverThread.start();
