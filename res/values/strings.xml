@@ -68,15 +68,15 @@ If something is not working the way you expect it to, please report it to Camera
     <string name="about_dlg_message">
         <b>Description: </b>
         FTP Server (SwiFTP) allows you to run an FTP server on your Android device.\n\n\
-        \n
         This version is modified for CameraCornet integration. We encourage donations to the original SwiFTP software authors,
           namely Pieter Pareit who maintains the application!
-        \n
-        <b>Website:</b>
+        \n\n
+        <b>Source code Website:</b>
         https://github.com/roundsparrow/swiftp/\n\n
         <b>Programming: </b>\
         Dave Revell (dave.revell@gmail.com), Pieter Pareit (pieter.pareit@gmail.com), Stephen A. Gutknecht\n\n\
         <b>Artwork:</b>
+        Thank you to visualpharm.com for their cornet icon graphic.\n
         Birgit Niemegeers\n\n
         <b>License: </b>
         GNU General Public License v3.0\n\n
@@ -103,7 +103,10 @@ If something is not working the way you expect it to, please report it to Camera
     <string name="storage_warning">Warning: storage is not available. You may want to unmount it.</string>
     <string name="widget_name">FTP Server Widget</string>
     <string name="app_name">SwiFTP CameraCornet</string>
+
+    <!-- CameraCornet fork additions -->
     <string name="file_incoming_toast">FTP file from camera incoming</string>
     <string name="incomingToast_label">Show on-screen toast for each incoming file</string>
+    <string name="license_linkbacks">Thank you to visualpharm.com for their cornet icon graphic.</string>
 
 </resources>
