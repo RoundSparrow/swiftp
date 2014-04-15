@@ -20,7 +20,7 @@ along with SwiFTP.  If not, see <http://www.gnu.org/licenses/>.
 <resources>
     <!-- Don't translate the default resources -->
     <!-- ToDo: // CameraCornet QuickSetup app interface via ContentProvider with signature level access, get file path -->
-    <string name="chroot_default">/sdcard/CameraCornet/camincoming/ftp0</string>
+    <string name="chroot_default">/sdcard/CameraCornet0/camincoming/ftp0</string>
     <string name="username_default">camcornet</string>
     <string name="password_default">changeme</string>
     <string name="show_password_default">true</string>
