@@ -19,15 +19,21 @@ public class RequestStartStopReceiver extends BroadcastReceiver {
         Log.v(TAG, "Received: " + intent.getAction());
 
         // TODO: analog code as in ServerPreferenceActivity.start/stopServer(), refactor
-        if (intent.getAction().equals(FsService.ACTION_START_FTPSERVER)) {
-            Intent serverService = new Intent(context, FsService.class);
-            if (!FsService.isRunning()) {
-                warnIfNoExternalStorage();
-                context.startService(serverService);
+        try {
+            if (intent.getAction().equals(FsService.ACTION_START_FTPSERVER)) {
+                Intent serverService = new Intent(context, FsService.class);
+                if (!FsService.isRunning()) {
+                    warnIfNoExternalStorage();
+                    context.startService(serverService);
+                }
+            } else if (intent.getAction().equals(FsService.ACTION_STOP_FTPSERVER)) {
+                Intent serverService = new Intent(context, FsService.class);
+                context.stopService(serverService);
             }
-        } else if (intent.getAction().equals(FsService.ACTION_STOP_FTPSERVER)) {
-            Intent serverService = new Intent(context, FsService.class);
-            context.stopService(serverService);
+        }
+        catch (Exception e0)
+        {
+            Log.e(TAG, "Exception RequestStartStopReceiver " + e0);
         }
     }
 
