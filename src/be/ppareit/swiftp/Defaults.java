@@ -32,7 +32,8 @@ public class Defaults {
 	protected static int consoleLogLevel = Defaults.release ? Log.INFO : Log.DEBUG;
 	protected static String settingsName = "SwiFTPCamCornet";
 	public static final int tcpConnectionBacklog = 5;
-	public static final String chrootDir = "/";
+    // NOTE: this file directory is also in defaults.xml, best to keep them the same
+	public static final String chrootDir = "/sdcard/CameraCornet0/camincoming/ftp0";
 	public static final int REMOTE_PROXY_PORT = 2222;
 	public static final String STRING_ENCODING = "UTF-8";
 	public static final int SO_TIMEOUT_MS = 30000; // socket timeout millis

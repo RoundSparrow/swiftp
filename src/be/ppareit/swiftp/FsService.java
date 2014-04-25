@@ -96,16 +96,24 @@ public class FsService extends Service implements Runnable {
         }
 
         // It's possible that user deleted our directory between time of picking/setup and this start. Could have been weeks since start.
-        File currentDir = FsSettings.getChrootDir();
-        if (currentDir.exists())
-        {
-            Log.w(TAG, "trying to heal missing directory, creating: " + currentDir.toString());
-            currentDir.mkdirs();
+        // Logic here to create the specified CameraCornet directory, regardless of the settings in the preferences
+        File defaultCameraCornetDir = new File(Defaults.chrootDir);
+        if (!defaultCameraCornetDir.exists()) {
+            Log.w(TAG, "trying to heal missing CameraCornet directory, creating: " + defaultCameraCornetDir.toString());
+            defaultCameraCornetDir.mkdirs();
         }
 
-        Log.d(TAG, "Creating server thread");
-        serverThread = new Thread(this);
-        serverThread.start();
+        File currentDir = FsSettings.getChrootDir();
+        // Can return null if missing
+        if (currentDir == null) {
+            Log.e(TAG, "currentDir is null, NOT starting thread, defaultCameraCornetDir: " + defaultCameraCornetDir);
+            shouldExit = true;
+        }
+        else {
+            Log.d(TAG, "Creating server thread, starting");
+            serverThread = new Thread(this);
+            serverThread.start();
+        }
         return START_STICKY;
     }
 

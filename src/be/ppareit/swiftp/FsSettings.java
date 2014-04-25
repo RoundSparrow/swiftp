@@ -44,7 +44,7 @@ public class FsSettings {
 
     public static File getChrootDir() {
         final SharedPreferences sp = getSharedPreferences();
-        String dirName = sp.getString("chrootDir", "");
+        String dirName = sp.getString("chrootDir", Defaults.chrootDir);
         File chrootDir = new File(dirName);
         if (dirName.equals("")) {
             if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
@@ -54,7 +54,7 @@ public class FsSettings {
             }
         }
         if (!chrootDir.isDirectory()) {
-            Log.e(TAG, "getChrootDir: not a directory");
+            Log.e(TAG, "getChrootDir: not a directory dirName: " + dirName + " chrootDir: " + chrootDir);
             return null;
         }
         return chrootDir;
